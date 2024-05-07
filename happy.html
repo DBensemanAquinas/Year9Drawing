@@ -1,0 +1,126 @@
+﻿﻿
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <canvas id="happy" width="500" height="500"></canvas>
+    <script>
+        var c = document.getElementById("happy");
+        var ctx = c.getContext('2d');
+        var faceNumber = 1;
+
+        function face1() {
+            ctx.clearRect(0, 0, 500, 500);
+            // Hair
+            ctx.fillStyle = "orange";
+            ctx.beginPath();
+            ctx.arc(250, 250, 240, Math.PI, 0);
+            ctx.fill();
+
+            // Face
+            ctx.fillStyle = "yellow";
+            ctx.beginPath();
+            ctx.arc(250, 250, 200, 0, 2 * Math.PI);
+            ctx.fill();
+
+            // Left eye
+            ctx.lineWidth = 4;
+            ctx.fillStyle = "white";
+            ctx.beginPath();
+            ctx.arc(150, 200, 50, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.stroke();
+            ctx.fillStyle = "black";
+            ctx.beginPath();
+            ctx.arc(150, 220, 20, 0, 2 * Math.PI);
+            ctx.fill();
+
+            // Right eye
+            ctx.fillStyle = "white";
+            ctx.beginPath();
+            ctx.arc(350, 200, 50, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.stroke();
+            ctx.fillStyle = "black";
+            ctx.beginPath();
+            ctx.arc(350, 220, 20, 0, 2 * Math.PI);
+            ctx.fill();
+
+            // eyebrows
+            ctx.lineWidth = 15;
+            ctx.beginPath();
+            ctx.arc(350, 160, 50, Math.PI, 0);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(150, 160, 50, Math.PI, 0);
+            ctx.stroke();
+
+            // Mouth
+            ctx.beginPath();
+            ctx.lineWidth = 10;
+            ctx.arc(250, 320, 100, 0, Math.PI);
+            ctx.stroke();
+        }
+
+        function face2() {
+            ctx.clearRect(0, 0, 500, 500);
+            // Hair
+
+            ctx.fillStyle = "orange";
+            ctx.beginPath();
+            ctx.arc(250, 250, 240, Math.PI, 0);
+            ctx.fill();
+
+            // Face
+            ctx.fillStyle = "yellow";
+            ctx.beginPath();
+            ctx.arc(250, 250, 200, 0, 2 * Math.PI);
+            ctx.fill();
+
+            // Left eye
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.arc(150, 200, 50, 0, Math.PI);
+            ctx.stroke();
+
+            // Right eye
+            ctx.beginPath();
+            ctx.arc(350, 200, 50, 0, Math.PI);
+            ctx.stroke();
+
+            // eyebrows
+            ctx.lineWidth = 15;
+            ctx.beginPath();
+            ctx.arc(350, 180, 50, Math.PI, 0);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(150, 180, 50, Math.PI, 0);
+            ctx.stroke();
+
+            // Mouth
+            ctx.beginPath();
+            ctx.lineWidth = 10;
+            ctx.moveTo(150, 370);
+            ctx.lineTo(350, 370);
+            ctx.stroke();
+        }
+
+        function draw() {
+            if (faceNumber == 1) {
+                face1();
+                faceNumber = 2;
+            }
+            else {
+                face2();
+                faceNumber = 1;
+            }
+        }
+        setInterval(draw, 400);
+    </script>
+
+</body>
+</html>

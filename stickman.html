@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Stickman</title>
+</head>
+<body>
+    <canvas id="stickman" width="500" height="400"></canvas>
+    <script>
+        var c = document.getElementById("stickman");
+        var ctx = c.getContext('2d');
+        ctx.lineWidth = 10;
+
+        function stickman1() {
+            // background
+            ctx.fillStyle = "yellow";
+            ctx.rect(0, 0, 500, 400);
+            ctx.fill();
+
+            ctx.beginPath()
+            // body and left leg
+            ctx.moveTo(250, 150);
+            ctx.lineTo(250, 250);
+            ctx.lineTo(200, 310);
+            ctx.lineTo(200, 380);
+
+            // right leg
+            ctx.moveTo(250, 250);
+            ctx.lineTo(300, 310);
+            ctx.lineTo(300, 380);
+
+            // arms
+            ctx.moveTo(150, 150);
+            ctx.lineTo(180, 200);
+            ctx.lineTo(320, 200);
+            ctx.lineTo(300, 150);
+            ctx.stroke();
+
+            // head
+            ctx.beginPath()
+            ctx.arc(170, 100, 50, 0, 2 * Math.PI);
+            ctx.stroke();
+        }
+
+        function stickman2() {
+            //background
+            ctx.fillStyle = "yellow";
+            ctx.rect(0, 0, 500, 400);
+            ctx.fill();
+
+            ctx.beginPath();
+            //body and left leg
+            ctx.moveTo(250, 150);
+            ctx.lineTo(250, 250);
+            ctx.lineTo(200, 310);
+            ctx.lineTo(200, 380);
+            ctx.lineTo(200, 310);
+
+            //right leg
+            ctx.moveTo(250, 250);
+            ctx.lineTo(250, 250);
+            ctx.lineTo(300, 310);
+            ctx.lineTo(300, 380);
+
+            //left arm
+            ctx.moveTo(250, 200);
+            ctx.lineTo(180, 200);
+            ctx.lineTo(200, 150);
+
+            //right arm
+            ctx.moveTo(250, 200);
+            ctx.lineTo(320, 200);
+            ctx.lineTo(350, 150);
+            ctx.stroke();
+
+            //head
+            ctx.beginPath()
+            ctx.arc(330, 100, 50, 0, 2 * Math.PI);
+            ctx.stroke();
+        }
+
+        var stickmanNumber = 1;
+
+        function draw() {
+            if (stickmanNumber == 1) {
+                stickman1();
+                stickmanNumber = 2;
+            }
+            else {
+                stickman2();
+                stickmanNumber = 1;
+            }
+        }
+
+        setInterval(draw, 800);
+
+    </script>
+</body>
+</html>
