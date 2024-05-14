@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <canvas id="truck" width="1000" height="400"></canvas>
+    <script>
+        var c = document.getElementById("truck");
+        var ctx = c.getContext('2d');
+
+        function truck(x) {
+            ctx.clearRect(0, 0, 500, 400);
+
+            // truck body
+            ctx.fillStyle = "yellow";
+            ctx.fillRect(x, 100, 300, 200);
+
+            // truck cab
+            ctx.fillStyle = "green";
+            ctx.beginPath();
+            ctx.moveTo(x + 300, 150);
+            ctx.lineTo(x + 350, 150);
+            ctx.lineTo(x + 360, 200);
+            ctx.lineTo(x + 450, 230);
+            ctx.lineTo(x + 450, 320);
+            ctx.lineTo(x + 300, 320);
+            ctx.fill();
+
+            // wheels
+            ctx.fillStyle = "black";
+            ctx.beginPath();
+            ctx.arc(x + 40, 340, 40, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(x + 130, 340, 40, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(x + 400, 340, 40, 0, 2 * Math.PI);
+            ctx.fill();
+
+            ctx.font = "50px Arial";
+            ctx.fillText("Pack n Save", x + 12, 200);
+        }
+
+        truck(200);
+    </script>
+</body>
+</html>
