@@ -10,10 +10,10 @@
     <script>
         var c = document.getElementById("truck");
         var ctx = c.getContext('2d');
+        var truckX = 0;
+        const width = 1000;
 
         function truck(x) {
-            ctx.clearRect(0, 0, 500, 400);
-
             // truck body
             ctx.fillStyle = "yellow";
             ctx.fillRect(x, 100, 300, 200);
@@ -42,10 +42,27 @@
             ctx.fill();
 
             ctx.font = "50px Arial";
-            ctx.fillText("Pack n Save", x + 12, 200);
+            ctx.fillText("Pak 'n' Save", x + 12, 200);
         }
 
-        truck(200);
+        function draw() {
+            ctx.clearRect(0, 0, 1000, 400);
+            // road
+            ctx.fillStyle = "grey";
+            ctx.fillRect(0, 300, 1000, 100);
+            // grass
+            ctx.fillStyle = "lightgreen";
+            ctx.fillRect(0, 0, 1000, 300);
+            truck(truckX);
+
+            truckX += 1;
+            if (truckX > width) {
+                truckX = -500;
+            }
+        }
+
+        setInterval(draw, 10);
+        
     </script>
 </body>
 </html>

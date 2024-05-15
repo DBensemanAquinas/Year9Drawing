@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <canvas id="ball" width="500" height="200"></canvas>
+    <script>
+        var c = document.getElementById("ball");
+        var ctx = c.getContext('2d');
+        var ballX = 0;
+        var ballVelocityX = 1;
+        var ballY = 100;
+        var ballVelocityY = 0.5;
+
+        function ball(x, y) {
+            ctx.fillStyle = "red";
+            ctx.beginPath();
+            ctx.arc(x, y, 25, 0, 2 * Math.PI);
+            ctx.fill();
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, 500, 200);
+            ball(ballX, ballY);
+
+            ballX += ballVelocityX;
+            if (ballX >= 500 || ballX <= 0) {
+                ballVelocityX = -ballVelocityX;
+            }
+            ballY += ballVelocityY;
+            if (ballY >= 200 || ballY <= 0) {
+                ballVelocityY = -ballVelocityY;
+            }
+        }
+        
+        setInterval(draw, 5);
+    </script>
+</body >
+</html>
