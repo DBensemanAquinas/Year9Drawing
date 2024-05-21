@@ -49,6 +49,17 @@
             // wheels
             wheel(x + 25, y + 60);
             wheel(x + 100, y + 60);
+
+            // window
+            ctx.fillStyle = "grey";
+            ctx.beginPath();
+            ctx.moveTo(x + 54, y + 4 - bounce);
+            ctx.lineTo(x + 71, y + 4 - bounce);
+            ctx.lineTo(x + 84, y + 25 - bounce);
+            ctx.lineTo(x + 54, y + 25 - bounce);
+            ctx.fill();
+
+
         }
 
         function draw() {
@@ -60,7 +71,7 @@
             if (ute1X > 800) {
                 ute1X = -200;
             }
-            ute2X += 2;
+            ute2X += 1.5;
             if (ute2X > 800) {
                 ute2X = -200;
             }
