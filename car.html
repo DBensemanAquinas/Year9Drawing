@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <canvas id="car" width="800" height="200"></canvas>
+    <script>
+        var c = document.getElementById("car");
+        var ctx = c.getContext('2d');
+
+        function wheel(x, y) {
+            ctx.fillStyle = "black";
+            ctx.beginPath();
+            ctx.arc(x, y, 18, 0, 2 * Math.PI);
+            ctx.fill();
+
+            ctx.fillStyle = "grey";
+            ctx.beginPath();
+            ctx.arc(x, y, 10, 0, 2 * Math.PI);
+            ctx.fill();
+        } 
+
+        function ute(x, y, colour) {
+            // body
+            ctx.fillStyle = colour;
+            ctx.beginPath();
+            ctx.moveTo(x, y + 25);
+            ctx.lineTo(x + 50, y + 25);
+            ctx.lineTo(x + 50, y);
+            ctx.lineTo(x + 75, y);
+            ctx.lineTo(x + 85, y + 20);
+            ctx.lineTo(x + 120, y + 30);
+            ctx.lineTo(x + 120, y + 50);
+            ctx.lineTo(x, y + 50);
+            ctx.fill();
+
+            // wheels
+            wheel(x + 25, y + 60);
+            wheel(x + 100, y + 60);
+        }
+
+        ute(10, 50, "red");
+        ute(200, 100, "brown");
+    </script>
+
+</body>
+</html>
