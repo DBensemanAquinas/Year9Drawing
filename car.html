@@ -10,6 +10,10 @@
     <script>
         var c = document.getElementById("car");
         var ctx = c.getContext('2d');
+        var ute1X = -200;
+        var ute2X = -400;
+        var bounce = 0;
+        var bounceVelocity = 0.2;
 
         function wheel(x, y) {
             ctx.fillStyle = "black";
@@ -21,20 +25,25 @@
             ctx.beginPath();
             ctx.arc(x, y, 10, 0, 2 * Math.PI);
             ctx.fill();
+
+            ctx.fillStyle = "black  ";
+            ctx.beginPath();
+            ctx.arc(x, y, 3, 0, 2 * Math.PI);
+            ctx.fill();
         } 
 
         function ute(x, y, colour) {
             // body
             ctx.fillStyle = colour;
             ctx.beginPath();
-            ctx.moveTo(x, y + 25);
-            ctx.lineTo(x + 50, y + 25);
-            ctx.lineTo(x + 50, y);
-            ctx.lineTo(x + 75, y);
-            ctx.lineTo(x + 85, y + 20);
-            ctx.lineTo(x + 120, y + 30);
-            ctx.lineTo(x + 120, y + 50);
-            ctx.lineTo(x, y + 50);
+            ctx.moveTo(x, y + 25 - bounce);
+            ctx.lineTo(x + 50, y + 25 - bounce);
+            ctx.lineTo(x + 50, y - bounce);
+            ctx.lineTo(x + 75, y - bounce);
+            ctx.lineTo(x + 85, y + 20 - bounce);
+            ctx.lineTo(x + 120, y + 30 - bounce);
+            ctx.lineTo(x + 120, y + 50 - bounce);
+            ctx.lineTo(x, y + 50 - bounce);
             ctx.fill();
 
             // wheels
@@ -42,8 +51,28 @@
             wheel(x + 100, y + 60);
         }
 
-        ute(10, 50, "red");
-        ute(200, 100, "brown");
+        function draw() {
+            ctx.clearRect(0, 0, 800, 200);
+            ute(ute1X, 50, "red");
+            ute(ute2X, 100, "brown");
+
+            ute1X += 1;
+            if (ute1X > 800) {
+                ute1X = -200;
+            }
+            ute2X += 2;
+            if (ute2X > 800) {
+                ute2X = -200;
+            }
+
+            bounce += bounceVelocity;
+            if (bounce > 8 || bounce < -4) {
+                bounceVelocity = - bounceVelocity;
+            }
+        }
+
+        setInterval(draw, 10);
+
     </script>
 
 </body>
