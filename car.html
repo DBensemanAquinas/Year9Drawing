@@ -14,6 +14,7 @@
         var ute2X = -400;
         var bounce = 0;
         var bounceVelocity = 0.2;
+        var lineOffset = 0;
 
         function wheel(x, y) {
             ctx.fillStyle = "black";
@@ -51,7 +52,7 @@
             wheel(x + 100, y + 60);
 
             // window
-            ctx.fillStyle = "grey";
+            ctx.fillStyle = "#333333";
             ctx.beginPath();
             ctx.moveTo(x + 54, y + 4 - bounce);
             ctx.lineTo(x + 71, y + 4 - bounce);
@@ -64,16 +65,36 @@
 
         function draw() {
             ctx.clearRect(0, 0, 800, 200);
+
+            // grass and road
+            ctx.fillStyle = "lightgreen";
+            ctx.fillRect(0, 0, 800, 200);
+            ctx.fillStyle = "lightgrey";
+            ctx.fillRect(0, 80, 800, 110);
+
+            // centre line
+            ctx.fillStyle = "white";
+            for (var i = 0; i < 840; i += 40) {
+                ctx.fillRect(i - lineOffset, 133, 20, 4);
+            }
+
+            lineOffset += 0.5;
+            if (lineOffset > 39) {
+                lineOffset = 0;
+            }
+
             ute(ute1X, 50, "red");
             ute(ute2X, 100, "brown");
+            ute(ute1X + 400, 50, "green");
+            ute(ute2X + 500, 100, "orange");
 
             ute1X += 1;
             if (ute1X > 800) {
-                ute1X = -200;
+                ute1X = -500;
             }
             ute2X += 1.5;
             if (ute2X > 800) {
-                ute2X = -200;
+                ute2X = -600;
             }
 
             bounce += bounceVelocity;
