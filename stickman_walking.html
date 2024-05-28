@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <canvas id="car" width="800" height="200"></canvas>
+    <script>
+        var c = document.getElementById("car");
+        var ctx = c.getContext('2d');
+        ctx.lineWidth = 4;
+        var manX = 0;
+        var step = 0;
+
+        function stickman(x) {
+            // head
+            ctx.beginPath();
+            ctx.arc(x + 20, 20, 10, 0, 2 * Math.PI);
+            ctx.stroke();
+
+            // body
+            ctx.beginPath();
+            ctx.moveTo(x + 20, 30);
+            ctx.lineTo(x + 20, 60);
+            ctx.stroke();
+
+            // right arm
+            ctx.beginPath();
+            ctx.moveTo(x + 20, 40);
+            ctx.lineTo(x + 30, 50);
+            ctx.lineTo(x + 40, 65);
+            ctx.stroke();
+
+            // left arm
+            ctx.beginPath();
+            ctx.moveTo(x + 20, 40);
+            ctx.lineTo(x + 10, 50);
+            ctx.lineTo(x + 10, 65);
+            ctx.stroke();
+
+            // right leg
+            ctx.beginPath();
+            ctx.moveTo(x + 20, 60);
+            ctx.lineTo(x + 40 - step * .75, 80);
+            ctx.lineTo(x + 40 - step, 100);
+            ctx.stroke();
+
+            // left leg
+            ctx.beginPath();
+            ctx.moveTo(x + 20, 60);
+            ctx.lineTo(x + 10 + step * .75, 80);
+            ctx.lineTo(x + step, 100);
+            ctx.stroke();
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, 800, 200);
+
+            stickman(manX);
+
+            manX += 1;
+            if (manX > 800) {
+                manX = -40;
+            }
+
+            step += 1;
+            if (step >= 40) {
+                step = 0;
+            }
+        }
+
+        setInterval(draw, 10);
+    </script>
+
+</body>
+</html>
