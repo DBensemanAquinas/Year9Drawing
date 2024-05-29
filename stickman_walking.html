@@ -6,63 +6,79 @@
     <title></title>
 </head>
 <body>
-    <canvas id="car" width="800" height="200"></canvas>
+    <canvas id="stick" width="1200" height="800"></canvas>
     <script>
-        var c = document.getElementById("car");
+        var c = document.getElementById("stick");
         var ctx = c.getContext('2d');
         ctx.lineWidth = 4;
         var manX = 0;
         var step = 0;
+        var width = stick.width;
+        var height = stick.height;
 
-        function stickman(x) {
+        function stickman(x, y) {
             // head
             ctx.beginPath();
-            ctx.arc(x + 20, 20, 10, 0, 2 * Math.PI);
+            ctx.arc(x + 20, y + 20, 10, 0, 2 * Math.PI);
             ctx.stroke();
 
             // body
             ctx.beginPath();
-            ctx.moveTo(x + 20, 30);
-            ctx.lineTo(x + 20, 60);
+            ctx.moveTo(x + 20, y + 30);
+            ctx.lineTo(x + 20, y + 60);
             ctx.stroke();
 
             // right arm
             ctx.beginPath();
-            ctx.moveTo(x + 20, 40);
-            ctx.lineTo(x + 30, 50);
-            ctx.lineTo(x + 40, 65);
+            ctx.moveTo(x + 20, y + 40);
+            ctx.lineTo(x + 30 - step * 0.5, y + 50);
+            ctx.lineTo(x + 40 - step * 0.75, y + 65);
             ctx.stroke();
 
             // left arm
             ctx.beginPath();
-            ctx.moveTo(x + 20, 40);
-            ctx.lineTo(x + 10, 50);
-            ctx.lineTo(x + 10, 65);
+            ctx.moveTo(x + 20, y + 40);
+            ctx.lineTo(x + 10 + step * 0.5, y + 50);
+            ctx.lineTo(x + 10 + step * 0.75, y + 65);
             ctx.stroke();
 
             // right leg
             ctx.beginPath();
-            ctx.moveTo(x + 20, 60);
-            ctx.lineTo(x + 40 - step * .75, 80);
-            ctx.lineTo(x + 40 - step, 100);
+            ctx.moveTo(x + 20, y + 60);
+            ctx.lineTo(x + 40 - step * .75, y + 80);
+            ctx.lineTo(x + 40 - step, y + 100);
+            ctx.lineTo(x + 50 - step, y + 100);
+
             ctx.stroke();
 
             // left leg
             ctx.beginPath();
-            ctx.moveTo(x + 20, 60);
-            ctx.lineTo(x + 10 + step * .75, 80);
-            ctx.lineTo(x + step, 100);
+            ctx.moveTo(x + 20, y + 60);
+            ctx.lineTo(x + 10 + step * .75, y + 80);
+            ctx.lineTo(x + step, y + 100);
+            ctx.lineTo(x + 10 + step, y + 100);
+
             ctx.stroke();
         }
 
         function draw() {
-            ctx.clearRect(0, 0, 800, 200);
+            ctx.clearRect(0, 0, width, height);
+            ctx.fillStyle = "yellow";
+            ctx.fillRect(0, 0, width, height);
 
-            stickman(manX);
+            for (i = 0; i < width; i += 50) {
+                stickman(manX - i + 20, 0);
+                stickman(manX - i + 10, (height - 100) * 0.25);
+                stickman(manX - i, (height - 100) * 0.5);
+                stickman(manX - i - 10, (height - 100) * 0.75);
+                stickman(manX - i - 20, (height - 100));
+            }
+            
+            
 
             manX += 1;
-            if (manX > 800) {
-                manX = -40;
+            if (manX > width * 2) {
+                manX = -80;
             }
 
             step += 1;
@@ -71,7 +87,7 @@
             }
         }
 
-        setInterval(draw, 10);
+        setInterval(draw, 5);
     </script>
 
 </body>
