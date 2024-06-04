@@ -6,7 +6,7 @@
     <title></title>
 </head>
 <body>
-    <canvas id="stick" width="1200" height="800"></canvas>
+    <canvas id="stick" width="1200" height="600"></canvas>
     <script>
         var c = document.getElementById("stick");
         var ctx = c.getContext('2d');
@@ -67,17 +67,14 @@
             ctx.fillRect(0, 0, width, height);
 
             for (i = 0; i < width; i += 50) {
-                stickman(manX - i + 20, 0);
-                stickman(manX - i + 10, (height - 100) * 0.25);
-                stickman(manX - i, (height - 100) * 0.5);
-                stickman(manX - i - 10, (height - 100) * 0.75);
-                stickman(manX - i - 20, (height - 100));
+                for (offset = 0; offset <= height - 100; offset += 40)
+                stickman(manX - i - offset * 0.5, offset);
             }
             
             
 
             manX += 1;
-            if (manX > width * 2) {
+            if (manX > width * 2 + height) {
                 manX = -80;
             }
 
@@ -87,7 +84,7 @@
             }
         }
 
-        setInterval(draw, 5);
+        setInterval(draw, 10);
     </script>
 
 </body>

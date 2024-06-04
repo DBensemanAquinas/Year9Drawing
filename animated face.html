@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <canvas id="happy" width="500" height="500"></canvas>
+    <script>
+        var c = document.getElementById("happy");
+        var ctx = c.getContext('2d');
+        var faceNumber = 1;
+        var offset = 0;
+        var offsetV = 0.2;
+
+
+    function face() {
+        ctx.clearRect(0, 0, 500, 500);
+        // Hair
+        ctx.fillStyle = "orange";
+        ctx.beginPath();
+        ctx.arc(250, 250 + offset, 240, Math.PI, 0);
+        ctx.fill();
+
+        // Face
+        ctx.fillStyle = "yellow";
+        ctx.beginPath();
+        ctx.arc(250, 250, 200, 0, 2 * Math.PI);
+        ctx.fill();
+
+        // Left eye
+        ctx.lineWidth = 4;
+        ctx.fillStyle = "white";
+        ctx.beginPath();
+        ctx.arc(150, 200, 50, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = "black";
+        ctx.beginPath();
+        ctx.arc(150 + offset, 220, 20, 0, 2 * Math.PI);
+        ctx.fill();
+
+        // Right eye
+        ctx.fillStyle = "white";
+        ctx.beginPath();
+        ctx.arc(350, 200, 50, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = "black";
+        ctx.beginPath();
+        ctx.arc(350 + offset, 220, 20, 0, 2 * Math.PI);
+        ctx.fill();
+
+        // eyebrows
+        ctx.lineWidth = 15;
+        ctx.beginPath();
+        ctx.arc(350, 160 + offset, 50, Math.PI, 0);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(150, 160 + offset, 50, Math.PI, 0);
+        ctx.stroke();
+
+        // Mouth
+        ctx.beginPath();
+        ctx.lineWidth = 20;
+        ctx.moveTo(150, 320);
+        ctx.quadraticCurveTo(250, 360 + offset * 5, 350, 320);      
+        ctx.stroke();
+    }
+
+    function draw() {
+        face();
+
+        offset += offsetV;
+        if (Math.abs(offset) > 15) {
+            offsetV = - offsetV;
+        }
+    }
+    setInterval(draw, 10);
+    </script>
+</body>
+</html>
