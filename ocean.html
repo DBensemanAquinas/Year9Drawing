@@ -10,37 +10,58 @@
     <script>
         var c = document.getElementById("ocean");
         var ctx = c.getContext('2d');
+        var sharkX = 0;
+        var waveX = 0;
 
         function shark(x) {
             // Shark fin
             ctx.fillStyle = "grey";
             ctx.beginPath();
-            ctx.moveTo(0, 80);
-            ctx.lineTo(0, 150);
-            ctx.lineTo(50, 150);
-            ctx.quadraticCurveTo(45, 100, 0, 80);
+            ctx.moveTo(x, 80);
+            ctx.lineTo(x, 150);
+            ctx.lineTo(x + 50, 150);
+            ctx.quadraticCurveTo(x + 45, 100, x, 80);
             ctx.fill();
         }
 
-        function water(x, color) {
+        function water(x, y, color) {
             // water
-            ctx.fillStyle = "blue";
+            ctx.fillStyle = color;
             ctx.beginPath();
-            ctx.moveTo(0, 100);
-            ctx.quadraticCurveTo(50, 150, 100, 100);
-            ctx.quadraticCurveTo(150, 150, 200, 100);
-            ctx.quadraticCurveTo(250, 150, 300, 100);
-            ctx.quadraticCurveTo(350, 150, 400, 100);
-            ctx.quadraticCurveTo(450, 150, 500, 100);
-            ctx.quadraticCurveTo(550, 150, 600, 100);
-            ctx.lineTo(600, 300);
+            ctx.moveTo(x - 400, y);
+            ctx.quadraticCurveTo(x - 390, y + 50, x - 300, y);
+            ctx.quadraticCurveTo(x - 290, y + 50, x - 200, y);
+            ctx.quadraticCurveTo(x - 190, y + 50, x - 100, y);
+            ctx.quadraticCurveTo(x - 90, y + 50, x, y);
+            ctx.quadraticCurveTo(x + 10, y + 50, x + 100, y);
+            ctx.quadraticCurveTo(x + 110, y + 50, x + 200, y);
+            ctx.quadraticCurveTo(x + 210, y + 50, x + 300, y);
+            ctx.quadraticCurveTo(x + 310, y + 50, x + 400, y);
+            ctx.quadraticCurveTo(x + 410, y + 50, x + 500, y);
+            ctx.quadraticCurveTo(x + 510, y + 50, x + 600, y);
+            ctx.lineTo(x + 600, 300);
             ctx.lineTo(0, 300);
             ctx.fill();
         } 
 
         function draw() {
-            shark(0);
-            water(0, "blue");
+            ctx.clearRect(0, 0, 600, 300);
+            shark(sharkX);
+            water(waveX, 100, "#0000ff");
+            water(waveX * 2, 150, "#3333ff");
+            water(waveX * 3, 200, "#6666ff");
+            water(waveX * 4, 250, "#9999ff");
+
+
+            sharkX += 1;
+            if (sharkX > 600) {
+                sharkX = 0;
+            }
+
+            waveX += 0.25;
+            if (waveX > 100) {
+                waveX = 0;
+            }
         }
 
         setInterval(draw, 10);
