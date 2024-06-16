@@ -12,7 +12,7 @@
         var ctx = c.getContext('2d');
         var sharkX = 0;
         var waveX = 0;
-
+        
         function shark(x) {
             // Shark fin
             ctx.fillStyle = "grey";
@@ -24,31 +24,52 @@
             ctx.fill();
         }
 
+        function shark2(x) {
+            // Shark fin
+            ctx.fillStyle = "lightgrey";
+            ctx.beginPath();
+            ctx.moveTo(x, 180);
+            ctx.lineTo(x, 250);
+            ctx.lineTo(x - 50, 250);
+            ctx.quadraticCurveTo(x - 45, 200, x, 180);
+            ctx.fill();
+        }
+
         function water(x, y, color) {
             // water
             ctx.fillStyle = color;
             ctx.beginPath();
             ctx.moveTo(x - 400, y);
-            ctx.quadraticCurveTo(x - 390, y + 50, x - 300, y);
-            ctx.quadraticCurveTo(x - 290, y + 50, x - 200, y);
-            ctx.quadraticCurveTo(x - 190, y + 50, x - 100, y);
-            ctx.quadraticCurveTo(x - 90, y + 50, x, y);
-            ctx.quadraticCurveTo(x + 10, y + 50, x + 100, y);
-            ctx.quadraticCurveTo(x + 110, y + 50, x + 200, y);
-            ctx.quadraticCurveTo(x + 210, y + 50, x + 300, y);
-            ctx.quadraticCurveTo(x + 310, y + 50, x + 400, y);
-            ctx.quadraticCurveTo(x + 410, y + 50, x + 500, y);
-            ctx.quadraticCurveTo(x + 510, y + 50, x + 600, y);
+            for (i = x - 400; i < 600; i += 100) {
+                ctx.quadraticCurveTo(i - 10, y + 50, i + 100, y);
+            }
             ctx.lineTo(x + 600, 300);
             ctx.lineTo(0, 300);
             ctx.fill();
         } 
 
+        function boat() {
+            ctx.fillStyle = "brown";
+            ctx.beginPath();
+            ctx.moveTo(200, 125);
+            ctx.lineTo(400, 125);
+            ctx.quadraticCurveTo(400, 200, 200, 200);
+            ctx.fill();
+            ctx.fillStyle = "pink";
+            ctx.beginPath();
+            ctx.arc(275, 110, 20, 0, 2 * Math.PI);
+            ctx.fill();
+        }
+
         function draw() {
             ctx.clearRect(0, 0, 600, 300);
+            ctx.fillStyle = "lightblue";
+            ctx.fillRect(0, 0, 600, 300);
             shark(sharkX);
             water(waveX, 100, "#0000ff");
-            water(waveX * 2, 150, "#3333ff");
+            boat();
+            water(waveX * 2, 150, "#4444ff");
+            shark2(600 - sharkX)
             water(waveX * 3, 200, "#6666ff");
             water(waveX * 4, 250, "#9999ff");
 
